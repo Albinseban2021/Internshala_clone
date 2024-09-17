@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:internshala_clone/Model/salary.dart';
 
 class InternshipCard extends StatelessWidget {
   final String title;
   final String company;
   final String location;
   final String duration;
-  final String stipend;
+  final Stipend? stipend;
+  final bool workFromHome;
 
   const InternshipCard({
     Key? key,
@@ -14,6 +16,7 @@ class InternshipCard extends StatelessWidget {
     required this.location,
     required this.duration,
     required this.stipend,
+    required this.workFromHome,
   }) : super(key: key);
 
   @override
@@ -35,11 +38,11 @@ class InternshipCard extends StatelessWidget {
             const SizedBox(height: 8.0),
             Text(company),
             const SizedBox(height: 8.0),
-            Text(location),
+            workFromHome == false ? Text(location) : Text("Work from home"),
             const SizedBox(height: 8.0),
             Text(duration),
             const SizedBox(height: 8.0),
-            Text(stipend),
+            Text(' ${stipend?.salary ?? 'null'}'),
             const SizedBox(height: 16.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

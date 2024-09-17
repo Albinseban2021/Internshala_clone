@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:internshala_clone/internship_page.dart';
+import 'package:internshala_clone/home.dart';
 
 
 class SplashScreen extends StatefulWidget {
