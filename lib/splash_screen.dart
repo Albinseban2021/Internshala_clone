@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:internshala_clone/home.dart';
 
-
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -36,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: <Widget>[
             Image.asset('assets/logo.jpg', height: 120.0),
             const SizedBox(height: 24),
-            Text('Internshala',
+            const Text('Internshala',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             const Text(

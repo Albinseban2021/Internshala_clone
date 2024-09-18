@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:internshala_clone/Model/salary.dart';
+import 'package:internshala_clone/view_detail.dart';
 
 class InternshipCard extends StatelessWidget {
   final String title;
@@ -8,17 +9,15 @@ class InternshipCard extends StatelessWidget {
   final String duration;
   final Stipend? stipend;
   final bool workFromHome;
-
   const InternshipCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.company,
     required this.location,
     required this.duration,
     required this.stipend,
     required this.workFromHome,
-  }) : super(key: key);
-
+  });
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -38,11 +37,38 @@ class InternshipCard extends StatelessWidget {
             const SizedBox(height: 8.0),
             Text(company),
             const SizedBox(height: 8.0),
-            workFromHome == false ? Text(location) : Text("Work from home"),
+            workFromHome == false
+                ? Row(
+                    children: [
+                      const Icon(Icons.location_pin, size: 15),
+                      Text(location),
+                    ],
+                  )
+                : const Row(
+                    children: [
+                      Icon(Icons.home, size: 15),
+                      Text("Work from home"),
+                    ],
+                  ),
             const SizedBox(height: 8.0),
-            Text(duration),
+            Row(
+              children: [
+                const Icon(Icons.play_circle_outline_sharp, size: 15),
+                const Text("Start Immediately"),
+                const SizedBox(
+                  width: 20,
+                ),
+                const Icon(Icons.calendar_today_outlined, size: 15),
+                Text(duration),
+              ],
+            ),
             const SizedBox(height: 8.0),
-            Text(' ${stipend?.salary ?? 'null'}'),
+            Row(
+              children: [
+                const Icon(Icons.money_rounded, size: 15),
+                Text(' ${stipend?.salary ?? 'null'}'),
+              ],
+            ),
             const SizedBox(height: 16.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -50,6 +76,18 @@ class InternshipCard extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     // Implement view details logic
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ViewDetails(
+                          company: company,
+                          duration: duration,
+                          location: location,
+                          stipend: stipend,
+                          title: title,
+                          workFromHome: workFromHome,
+                        ),
+                      ),
+                    );
                   },
                   child: const Text('View details'),
                 ),
